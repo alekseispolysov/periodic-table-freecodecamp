@@ -7,19 +7,14 @@ QUERY_DB () {
 
   echo $1 | while IFS="|" read ATOMIC_NUMBER SYMBOL NAME
   do
-  # atomic number
-  
-  # name
-  # NAME=$($PSQL "SELECT name FROM elements")
-  # symbol
-
-  # type
-
+  # type type_id
+  TYPE=$($PSQL "SELECT type FROM elements FULL JOIN properties USING(atomic_number) FULL JOIN types USING(type_id) WHERE atomic_number=$ATOMIC_NUMBER")
   # atomic mass
-
-  # melting point
-
-  # boiling point
+  ATOMIC_MASS=$($PSQL "SELECT atomic_mass FROM elements FULL JOIN properties USING(atomic_number) WHERE atomic_number=$ATOMIC_NUMBER")
+  # melting point melting_point_celsius
+  MELTING_POINT=$($PSQL "SELECT melting_point_celsius FROM elements FULL JOIN properties USING(atomic_number) WHERE atomic_number=$ATOMIC_NUMBER")
+  # boiling point boiling_point_celsius
+  BOILING_POINT=$($PSQL "SELECT boiling_point_celsius FROM elements FULL JOIN properties USING(atomic_number) WHERE atomic_number=$ATOMIC_NUMBER")
 
   echo "The element with atomic number $ATOMIC_NUMBER is $NAME ($SYMBOL). It's a $TYPE, with a mass of $ATOMIC_MASS. $NAME has a melting point of $MELTING_POINT celsius and a boiling point of $BOILING_POINT celsius."
   done
