@@ -4,8 +4,25 @@ PSQL="psql --username=freecodecamp --dbname=periodic_table -t --no-align -c"
 
 
 QUERY_DB () {
-  echo $1
 
+  echo $1 | while IFS="|" read ATOMIC_NUMBER SYMBOL NAME
+  do
+  # atomic number
+  
+  # name
+  # NAME=$($PSQL "SELECT name FROM elements")
+  # symbol
+
+  # type
+
+  # atomic mass
+
+  # melting point
+
+  # boiling point
+
+  echo "The element with atomic number $ATOMIC_NUMBER is $NAME ($SYMBOL). It's a $TYPE, with a mass of $ATOMIC_MASS. $NAME has a melting point of $MELTING_POINT celsius and a boiling point of $BOILING_POINT celsius."
+  done
 
 }
 
