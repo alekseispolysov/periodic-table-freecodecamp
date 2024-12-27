@@ -16,7 +16,7 @@ QUERY_DB () {
   # boiling point boiling_point_celsius
   BOILING_POINT=$($PSQL "SELECT boiling_point_celsius FROM elements FULL JOIN properties USING(atomic_number) WHERE atomic_number=$ATOMIC_NUMBER")
 
-  echo "The element with atomic number $ATOMIC_NUMBER is $NAME ($SYMBOL). It's a $TYPE, with a mass of $ATOMIC_MASS. $NAME has a melting point of $MELTING_POINT celsius and a boiling point of $BOILING_POINT celsius."
+  echo "The element with atomic number $ATOMIC_NUMBER is $NAME ($SYMBOL). It's a $TYPE, with a mass of $ATOMIC_MASS amu. $NAME has a melting point of $MELTING_POINT celsius and a boiling point of $BOILING_POINT celsius."
   done
 
 }
